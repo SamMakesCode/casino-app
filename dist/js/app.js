@@ -139,6 +139,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -147,13 +169,26 @@ __webpack_require__.r(__webpack_exports__);
       context: null
     };
   },
+  methods: {
+    handleItemClick: function handleItemClick(handle) {
+      switch (handle) {
+        case 'Continue':
+          this.game.unpause();
+          break;
+
+        default:
+          alert('Unhandled event "' + handle + '".');
+          break;
+      }
+    }
+  },
   mounted: function mounted() {
     this.canvas = document.getElementById('gameframe');
-    this.canvas.width = 640;
-    this.canvas.height = 480;
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
     this.context = this.canvas.getContext('2d');
     this.context.translate(this.canvas.width / 2 - _SamMakesCode_Casino_constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH / 2, this.canvas.height / 2 - _SamMakesCode_Casino_constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT / 2);
-    this.game.renderer.setCanvas(this.canvas, this.context);
+    this.game.setCanvas(this.canvas, this.context);
     this.game.run();
   },
   props: ['game']
@@ -770,18 +805,93 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { attrs: { id: "game" } }, [
+    _c("canvas", { attrs: { id: "gameframe" } }),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "hud" } }, [
+      _vm._v(
+        "\n        Day " +
+          _vm._s(this.game.time.days) +
+          ", " +
+          _vm._s(this.game.time.hours) +
+          ":" +
+          _vm._s(this.game.time.minutes) +
+          "\n         \n         \n         \n         \n        "
+      ),
+      _c(
+        "span",
+        {
+          style: { color: _vm.game.speed === 8 ? "red" : "white" },
+          on: {
+            click: function($event) {
+              return _vm.game.setSpeed(8)
+            }
+          }
+        },
+        [_vm._v("\n            >\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          style: { color: _vm.game.speed === 16 ? "red" : "white" },
+          on: {
+            click: function($event) {
+              return _vm.game.setSpeed(16)
+            }
+          }
+        },
+        [_vm._v("\n            >>\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          style: { color: _vm.game.speed === 32 ? "red" : "white" },
+          on: {
+            click: function($event) {
+              return _vm.game.setSpeed(32)
+            }
+          }
+        },
+        [_vm._v("\n            >>>\n        ")]
+      )
+    ]),
+    _vm._v(" "),
+    _vm.game.isPaused
+      ? _c("div", { staticClass: "fullscreen", attrs: { id: "pause" } }, [
+          _c("div", { attrs: { id: "menu" } }, [
+            _c(
+              "div",
+              {
+                staticClass: "menu-item",
+                on: {
+                  click: function($event) {
+                    return _vm.handleItemClick("Continue")
+                  }
+                }
+              },
+              [_vm._v("Continue")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "menu-item",
+                on: {
+                  click: function($event) {
+                    return _vm.handleItemClick("Quit")
+                  }
+                }
+              },
+              [_vm._v("Quit")]
+            )
+          ])
+        ])
+      : _vm._e()
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "game" } }, [
-      _c("canvas", { attrs: { id: "gameframe" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -16003,8 +16113,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Helpers_AssetManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Helpers/AssetManager */ "./src/js/SamMakesCode/Casino/Helpers/AssetManager.js");
 /* harmony import */ var _assets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets */ "./src/js/assets.js");
 /* harmony import */ var _Output_Renderer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Output/Renderer */ "./src/js/SamMakesCode/Casino/Output/Renderer.js");
-/* harmony import */ var _Models_Map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Models/Map */ "./src/js/SamMakesCode/Casino/Models/Map.js");
-/* harmony import */ var _Helpers_MapGenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Helpers/MapGenerator */ "./src/js/SamMakesCode/Casino/Helpers/MapGenerator.js");
+/* harmony import */ var _Helpers_MapGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Helpers/MapGenerator */ "./src/js/SamMakesCode/Casino/Helpers/MapGenerator.js");
+/* harmony import */ var _Input_Mouse__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Input/Mouse */ "./src/js/SamMakesCode/Casino/Input/Mouse.js");
+/* harmony import */ var _Input_Keyboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Input/Keyboard */ "./src/js/SamMakesCode/Casino/Input/Keyboard.js");
+/* harmony import */ var _Output_Camera__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Output/Camera */ "./src/js/SamMakesCode/Casino/Output/Camera.js");
+/* harmony import */ var _Progression__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Progression */ "./src/js/SamMakesCode/Casino/Progression.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -16017,33 +16130,127 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
+
+
 var Game = /*#__PURE__*/function () {
   function Game() {
     _classCallCheck(this, Game);
 
     this.assetManager = new _Helpers_AssetManager__WEBPACK_IMPORTED_MODULE_0__["default"](_assets__WEBPACK_IMPORTED_MODULE_1__["default"]);
+    this.camera = new _Output_Camera__WEBPACK_IMPORTED_MODULE_6__["default"]();
+    this.canvas = null;
+    this.inputLoop = null;
+    this.isPaused = true;
+    this.keyboard = null;
+    this.map = null;
+    this.mouse = null;
+    this.progression = new _Progression__WEBPACK_IMPORTED_MODULE_7__["default"]();
     this.renderer = new _Output_Renderer__WEBPACK_IMPORTED_MODULE_2__["default"]();
-    this.map = _Helpers_MapGenerator__WEBPACK_IMPORTED_MODULE_4__["default"].generate(10, 10);
+    this.speed = 8; // 8, 16, 32
+
+    this.time = {
+      days: 1,
+      hours: 7,
+      minutes: 0
+    };
     this.updateLoop = null;
   }
 
   _createClass(Game, [{
+    key: "handleInput",
+    value: function handleInput() {
+      var mousePosition = this.mouse.convertToScreenSpace(this.camera);
+      this.map.cursor.x = mousePosition.x;
+      this.map.cursor.y = mousePosition.y;
+
+      if (this.mouse.isClicked) {
+        console.log(mousePosition.x + ',' + mousePosition.y);
+      }
+
+      this.mouse.reset(); // No more mouse capturing beyond this point
+
+      if (this.keyboard.isKeyDown('w')) {
+        this.camera.shiftDown();
+      }
+
+      if (this.keyboard.isKeyDown('a')) {
+        this.camera.shiftRight();
+      }
+
+      if (this.keyboard.isKeyDown('s')) {
+        this.camera.shiftUp();
+      }
+
+      if (this.keyboard.isKeyDown('d')) {
+        this.camera.shiftLeft();
+      }
+
+      if (this.keyboard.isKeyDown('1')) {
+        this.setSpeed(8);
+      }
+
+      if (this.keyboard.isKeyDown('2')) {
+        this.setSpeed(16);
+      }
+
+      if (this.keyboard.isKeyDown('3')) {
+        this.setSpeed(32);
+      }
+
+      if (this.keyboard.isKeyDown('Escape')) {
+        if (!this.isPaused) {
+          // this.unpause();
+          // } else {
+          this.pause();
+        }
+      }
+    }
+  }, {
     key: "pause",
     value: function pause() {
+      this.isPaused = true;
       clearInterval(this.updateLoop);
       this.updateLoop = null;
+      clearInterval(this.progressionLoop);
+      this.progressionLoop = null;
     }
   }, {
     key: "run",
     value: function run() {
+      var mapGenerator = new _Helpers_MapGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](64, 64);
+      this.map = mapGenerator.generate();
+      this.keyboard = new _Input_Keyboard__WEBPACK_IMPORTED_MODULE_5__["default"]();
+      this.mouse = new _Input_Mouse__WEBPACK_IMPORTED_MODULE_4__["default"](this.canvas);
+      this.unpause();
+      var self = this;
+      this.inputLoop = setInterval(function () {
+        self.handleInput();
+      }, 1000 / 60);
+    }
+  }, {
+    key: "setCanvas",
+    value: function setCanvas(canvas, context) {
+      this.canvas = canvas;
+      this.renderer.setCanvas(this.canvas, context);
+    }
+  }, {
+    key: "setSpeed",
+    value: function setSpeed(speed) {
+      this.speed = speed;
+      this.pause();
       this.unpause();
     }
   }, {
     key: "unpause",
     value: function unpause() {
+      this.isPaused = false;
       var self = this;
+      this.progressionLoop = setInterval(function () {
+        self.progression.progress(self);
+      }, 1000 / this.speed);
       this.updateLoop = setInterval(function () {
-        self.renderer.draw(self.assetManager, self.map);
+        self.renderer.draw(self.assetManager, self.map, self.camera);
       }, 1000 / 60);
     }
   }]);
@@ -16138,11 +16345,13 @@ var AssetManager = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Asset = function Asset(name, src) {
+var Asset = function Asset(name, src, width, height) {
   _classCallCheck(this, Asset);
 
   this.name = name;
   this.src = src;
+  this.width = width;
+  this.height = height;
   this.asset = null;
 };
 
@@ -16160,6 +16369,7 @@ var Asset = function Asset(name, src) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Asset__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Asset */ "./src/js/SamMakesCode/Casino/Helpers/AssetManager/Asset.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants */ "./src/js/SamMakesCode/Casino/constants.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16180,15 +16390,24 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var ImageAsset = /*#__PURE__*/function (_Asset) {
   _inherits(ImageAsset, _Asset);
 
   var _super = _createSuper(ImageAsset);
 
-  function ImageAsset(name, src) {
+  function ImageAsset(name, src, width, height) {
     _classCallCheck(this, ImageAsset);
 
-    return _super.call(this, name, src);
+    if (typeof width === 'undefined') {
+      width = _constants__WEBPACK_IMPORTED_MODULE_1__["default"].TILE_WIDTH;
+    }
+
+    if (typeof height === 'undefined') {
+      height = _constants__WEBPACK_IMPORTED_MODULE_1__["default"].TILE_HEIGHT;
+    }
+
+    return _super.call(this, name, src, width, height);
   }
 
   return ImageAsset;
@@ -16208,6 +16427,9 @@ var ImageAsset = /*#__PURE__*/function (_Asset) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Models_Map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Models/Map */ "./src/js/SamMakesCode/Casino/Models/Map.js");
+/* harmony import */ var _Models_Tile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Models/Tile */ "./src/js/SamMakesCode/Casino/Models/Tile.js");
+/* harmony import */ var _Models_Decoration__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Models/Decoration */ "./src/js/SamMakesCode/Casino/Models/Decoration.js");
+/* harmony import */ var _Models_Objects_Tree1__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Models/Objects/Tree1 */ "./src/js/SamMakesCode/Casino/Models/Objects/Tree1.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -16216,27 +16438,64 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
+
+
 var MapGenerator = /*#__PURE__*/function () {
-  function MapGenerator() {
+  function MapGenerator(width, height) {
     _classCallCheck(this, MapGenerator);
+
+    this.width = width;
+    this.height = height;
+    this.map = new _Models_Map__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    this.endWidth = Math.floor(this.width / 2);
+    this.endHeight = Math.floor(this.height / 2);
+    this.startWidth = this.endWidth * -1;
+    this.startHeight = this.endHeight * -1;
   }
 
-  _createClass(MapGenerator, null, [{
+  _createClass(MapGenerator, [{
     key: "generate",
-    value: function generate(width, height) {
-      var endWidth = Math.floor(width / 2);
-      var endHeight = Math.floor(height / 2);
-      var startWidth = endWidth * -1;
-      var startHeight = endHeight * -1;
-      var map = new _Models_Map__WEBPACK_IMPORTED_MODULE_0__["default"]();
-
-      for (var x = startWidth; x < endWidth; x++) {
-        for (var y = startHeight; y < endHeight; y++) {
-          map.tiles[x + ',' + y] = {};
+    value: function generate() {
+      this.generateTiles();
+      this.generateDecorations();
+      this.generateObjects();
+      return this.map;
+    }
+  }, {
+    key: "generateTiles",
+    value: function generateTiles() {
+      for (var x = this.startWidth; x <= this.endWidth; x++) {
+        for (var y = this.startHeight; y <= this.endHeight; y++) {
+          this.map.tiles[x + ',' + y] = new _Models_Tile__WEBPACK_IMPORTED_MODULE_1__["default"](x, y, 'Sand');
         }
       }
+    }
+  }, {
+    key: "generateDecorations",
+    value: function generateDecorations() {
+      for (var x = this.startWidth; x <= this.endWidth; x++) {
+        for (var y = this.startHeight; y <= this.endHeight; y++) {
+          var diceRoll = Math.floor(Math.random() * (20 - 1 + 1) + 1);
 
-      return map;
+          if (diceRoll <= 1) {
+            this.map.tiles[x + ',' + y].decoration = new _Models_Decoration__WEBPACK_IMPORTED_MODULE_2__["default"](x, y, 'Rock1');
+          }
+        }
+      }
+    }
+  }, {
+    key: "generateObjects",
+    value: function generateObjects() {
+      for (var x = this.startWidth; x <= this.endWidth; x++) {
+        for (var y = this.startHeight; y <= this.endHeight; y++) {
+          var diceRoll = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+
+          if (diceRoll <= 1) {
+            this.map.objects[x + ',' + y] = new _Models_Objects_Tree1__WEBPACK_IMPORTED_MODULE_3__["default"](x, y);
+          }
+        }
+      }
     }
   }]);
 
@@ -16244,6 +16503,149 @@ var MapGenerator = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (MapGenerator);
+
+/***/ }),
+
+/***/ "./src/js/SamMakesCode/Casino/Input/Keyboard.js":
+/*!******************************************************!*\
+  !*** ./src/js/SamMakesCode/Casino/Input/Keyboard.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Keyboard = /*#__PURE__*/function () {
+  function Keyboard() {
+    var _this = this;
+
+    _classCallCheck(this, Keyboard);
+
+    this.keys = [];
+    document.addEventListener('keydown', function (e) {
+      if (!_this.isKeyDown(e.key)) {
+        _this.keys.push(e.key);
+      }
+    });
+    document.addEventListener('keyup', function (e) {
+      _this.keys.splice(_this.keys.indexOf(e.key), 1);
+    });
+  }
+
+  _createClass(Keyboard, [{
+    key: "isKeyDown",
+    value: function isKeyDown(key) {
+      return this.keys.indexOf(key) > -1;
+    }
+  }]);
+
+  return Keyboard;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Keyboard);
+
+/***/ }),
+
+/***/ "./src/js/SamMakesCode/Casino/Input/Mouse.js":
+/*!***************************************************!*\
+  !*** ./src/js/SamMakesCode/Casino/Input/Mouse.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/js/SamMakesCode/Casino/constants.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Mouse = /*#__PURE__*/function () {
+  function Mouse(canvas) {
+    var _this = this;
+
+    _classCallCheck(this, Mouse);
+
+    this.canvas = canvas;
+    this.x = 0;
+    this.y = 0;
+    this.isClicked = false;
+    var self = this;
+    this.canvas.addEventListener('mousemove', function (e) {
+      self.x = e.offsetX;
+      self.y = e.offsetY;
+    });
+    this.canvas.addEventListener('click', function () {
+      return _this.isClicked = true;
+    });
+  }
+
+  _createClass(Mouse, [{
+    key: "convertToScreenSpace",
+    value: function convertToScreenSpace(camera) {
+      var tempX = this.x;
+      var tempY = this.y; // Adjust for the camera's position
+
+      tempX -= camera.x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH;
+      tempY -= camera.y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT; // Adjust position so it's relative to center of screen
+
+      tempX -= this.canvas.width / 2;
+      tempY -= this.canvas.height / 2; // Get half of tiles sizes
+
+      var halfTileHeight = _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT / 2;
+      var halfTileWidth = _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH / 2; // Factor in the isometric view
+
+      var x = Math.round((tempX / halfTileWidth + tempY / halfTileHeight) / 2);
+      var y = Math.round((tempY / halfTileHeight - tempX / halfTileWidth) / 2);
+      return {
+        x: x,
+        y: y
+      };
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      this.isClicked = false;
+    }
+  }]);
+
+  return Mouse;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Mouse);
+
+/***/ }),
+
+/***/ "./src/js/SamMakesCode/Casino/Models/Decoration.js":
+/*!*********************************************************!*\
+  !*** ./src/js/SamMakesCode/Casino/Models/Decoration.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Decoration = function Decoration(x, y, assetName) {
+  _classCallCheck(this, Decoration);
+
+  this.x = x;
+  this.y = y;
+  this.assetName = assetName;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Decoration);
 
 /***/ }),
 
@@ -16261,10 +16663,172 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Map = function Map() {
   _classCallCheck(this, Map);
 
+  this.cursor = {
+    x: 0,
+    y: 0
+  };
+  this.objects = {};
   this.tiles = {};
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Map);
+
+/***/ }),
+
+/***/ "./src/js/SamMakesCode/Casino/Models/MapObject.js":
+/*!********************************************************!*\
+  !*** ./src/js/SamMakesCode/Casino/Models/MapObject.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MapObject = function MapObject(x, y, assetName) {
+  _classCallCheck(this, MapObject);
+
+  this.x = x;
+  this.y = y;
+  this.assetName = assetName;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (MapObject);
+
+/***/ }),
+
+/***/ "./src/js/SamMakesCode/Casino/Models/Objects/Tree1.js":
+/*!************************************************************!*\
+  !*** ./src/js/SamMakesCode/Casino/Models/Objects/Tree1.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MapObject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../MapObject */ "./src/js/SamMakesCode/Casino/Models/MapObject.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var Tree1 = /*#__PURE__*/function (_MapObject) {
+  _inherits(Tree1, _MapObject);
+
+  var _super = _createSuper(Tree1);
+
+  function Tree1(x, y) {
+    _classCallCheck(this, Tree1);
+
+    return _super.call(this, x, y, 'Tree1');
+  }
+
+  return Tree1;
+}(_MapObject__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Tree1);
+
+/***/ }),
+
+/***/ "./src/js/SamMakesCode/Casino/Models/Tile.js":
+/*!***************************************************!*\
+  !*** ./src/js/SamMakesCode/Casino/Models/Tile.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Tile = function Tile(x, y, floor) {
+  _classCallCheck(this, Tile);
+
+  this.x = x;
+  this.y = y;
+  this.floor = floor;
+  this.decoration = null;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Tile);
+
+/***/ }),
+
+/***/ "./src/js/SamMakesCode/Casino/Output/Camera.js":
+/*!*****************************************************!*\
+  !*** ./src/js/SamMakesCode/Casino/Output/Camera.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Camera = /*#__PURE__*/function () {
+  function Camera() {
+    _classCallCheck(this, Camera);
+
+    this.x = 0;
+    this.y = 0;
+  }
+
+  _createClass(Camera, [{
+    key: "shiftLeft",
+    value: function shiftLeft() {
+      this.x -= 0.1;
+    }
+  }, {
+    key: "shiftRight",
+    value: function shiftRight() {
+      this.x += 0.1;
+    }
+  }, {
+    key: "shiftUp",
+    value: function shiftUp() {
+      this.y -= 0.1;
+    }
+  }, {
+    key: "shiftDown",
+    value: function shiftDown() {
+      this.y += 0.1;
+    }
+  }, {
+    key: "convertToIsometric",
+    value: function convertToIsometric() {
+      var tempX = (this.x - this.y * -1) * -1;
+      var tempY = (this.y + this.x * -1) * -1;
+      return {
+        x: tempX,
+        y: tempY
+      };
+    }
+  }]);
+
+  return Camera;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Camera);
 
 /***/ }),
 
@@ -16301,17 +16865,85 @@ var Renderer = /*#__PURE__*/function () {
       this.context = context;
     }
   }, {
+    key: "calcDistance",
+    value: function calcDistance(x1, y1, x2, y2) {
+      var tempX = x1 - x2;
+      var tempY = y1 - y2;
+      return Math.sqrt(tempX * tempX + tempY * tempY);
+    }
+  }, {
     key: "draw",
-    value: function draw(assetManager, map) {
+    value: function draw(assetManager, map, camera) {
+      this.clear();
+      this.drawTiles(assetManager, map, camera);
+      this.drawCursor(assetManager, map, camera);
+      this.drawObjects(assetManager, map, camera);
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      this.context.clearRect(this.canvas.width / 2 * -1 + _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH / 2, this.canvas.height / 2 * -1 + _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT / 2, this.canvas.width, this.canvas.height);
+    }
+  }, {
+    key: "drawTiles",
+    value: function drawTiles(assetManager, map, camera) {
       for (var tileIndex in map.tiles) {
-        var tileIndexParts = tileIndex.split(',');
-        var x = tileIndexParts[0];
-        var y = tileIndexParts[1];
+        var tile = map.tiles[tileIndex];
+        var x = tile.x;
+        var y = tile.y;
+        var cameraIsoPos = camera.convertToIsometric();
+
+        if (this.calcDistance(x, y, cameraIsoPos.x, cameraIsoPos.y) > 10) {
+          continue;
+        }
+
         this.context.beginPath();
         var screenX = x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH / 2 - y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH / 2;
         var screenY = y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT / 2 + x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT / 2;
-        this.context.drawImage(assetManager.getAsset('Wood Light').asset, screenX, screenY, _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH, _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT);
+        screenX += camera.x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH;
+        screenY += camera.y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT;
+        this.context.drawImage(assetManager.getAsset(tile.floor).asset, screenX, screenY, _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH, _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT);
+
+        if (tile.decoration !== null) {
+          this.context.drawImage(assetManager.getAsset(tile.decoration.assetName).asset, screenX, screenY, _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH, _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT);
+        }
+
         this.context.stroke();
+      }
+    }
+  }, {
+    key: "drawCursor",
+    value: function drawCursor(assetManager, map, camera) {
+      var x = map.cursor.x;
+      var y = map.cursor.y;
+      this.context.beginPath();
+      var screenX = x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH / 2 - y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH / 2;
+      var screenY = y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT / 2 + x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT / 2;
+      screenX += camera.x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH;
+      screenY += camera.y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT; // screenX += Math.floor(camera.x * constants.TILE_WIDTH) - camera.x * constants.TILE_WIDTH;
+      // screenY += Math.floor(camera.y * constants.TILE_HEIGHT) - camera.y * constants.TILE_HEIGHT;
+
+      this.context.drawImage(assetManager.getAsset('Cursor').asset, screenX, screenY, _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH, _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT);
+      this.context.stroke();
+    }
+  }, {
+    key: "drawObjects",
+    value: function drawObjects(assetManager, map, camera) {
+      for (var objIndex in map.objects) {
+        var object = map.objects[objIndex];
+        var cameraIsoPos = camera.convertToIsometric();
+
+        if (this.calcDistance(object.x, object.y, cameraIsoPos.x, cameraIsoPos.y) > 10) {
+          continue;
+        }
+
+        this.context.beginPath();
+        var screenX = object.x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH / 2 - object.y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH / 2;
+        var screenY = object.y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT / 2 + object.x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT / 2;
+        screenX += camera.x * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_WIDTH;
+        screenY += camera.y * _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT;
+        var asset = assetManager.getAsset(object.assetName);
+        this.context.drawImage(asset.asset, screenX, screenY - (asset.height - _constants__WEBPACK_IMPORTED_MODULE_0__["default"].TILE_HEIGHT), asset.width, asset.height);
       }
     }
   }]);
@@ -16320,6 +16952,65 @@ var Renderer = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (Renderer);
+
+/***/ }),
+
+/***/ "./src/js/SamMakesCode/Casino/Progression.js":
+/*!***************************************************!*\
+  !*** ./src/js/SamMakesCode/Casino/Progression.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Progression = /*#__PURE__*/function () {
+  function Progression() {
+    _classCallCheck(this, Progression);
+
+    this.counter = 0;
+  }
+
+  _createClass(Progression, [{
+    key: "progress",
+    value: function progress(game) {
+      this.progressTime(game);
+      this.counter++;
+
+      if (this.counter >= 8) {
+        this.counter = 0;
+      }
+    }
+  }, {
+    key: "progressTime",
+    value: function progressTime(game) {
+      if (this.counter === 7) {
+        if (game.time.minutes >= 59) {
+          game.time.minutes = 0;
+
+          if (game.time.hours >= 23) {
+            game.time.hours = 0;
+            game.time.days++;
+          } else {
+            game.time.hours++;
+          }
+        } else {
+          game.time.minutes++;
+        }
+      }
+    }
+  }]);
+
+  return Progression;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Progression);
 
 /***/ }),
 
@@ -16376,7 +17067,11 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SamMakesCode_Casino_Helpers_AssetManager_ImageAsset__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SamMakesCode/Casino/Helpers/AssetManager/ImageAsset */ "./src/js/SamMakesCode/Casino/Helpers/AssetManager/ImageAsset.js");
 
-/* harmony default export */ __webpack_exports__["default"] = ([new _SamMakesCode_Casino_Helpers_AssetManager_ImageAsset__WEBPACK_IMPORTED_MODULE_0__["default"]('Wood Light', '/dist/img/floors/Wood_Light.png')]);
+/* harmony default export */ __webpack_exports__["default"] = ([// Misc
+new _SamMakesCode_Casino_Helpers_AssetManager_ImageAsset__WEBPACK_IMPORTED_MODULE_0__["default"]('Cursor', '/dist/img/Cursor.png'), // Flooring
+new _SamMakesCode_Casino_Helpers_AssetManager_ImageAsset__WEBPACK_IMPORTED_MODULE_0__["default"]('Sand', '/dist/img/floors/Sand.png'), new _SamMakesCode_Casino_Helpers_AssetManager_ImageAsset__WEBPACK_IMPORTED_MODULE_0__["default"]('Wood Light', '/dist/img/floors/Wood_Light.png'), // Decorations
+new _SamMakesCode_Casino_Helpers_AssetManager_ImageAsset__WEBPACK_IMPORTED_MODULE_0__["default"]('Rock1', '/dist/img/decorations/Rock1.png'), // Objects
+new _SamMakesCode_Casino_Helpers_AssetManager_ImageAsset__WEBPACK_IMPORTED_MODULE_0__["default"]('Tree1', '/dist/img/objects/Tree1.png', 128, 256)]);
 
 /***/ }),
 
